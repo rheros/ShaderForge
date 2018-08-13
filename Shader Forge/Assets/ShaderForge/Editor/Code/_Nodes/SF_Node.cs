@@ -58,7 +58,7 @@ namespace ShaderForge {
 		public bool canAlwaysSetPrecision = false;
 		public bool isFloatPrecisionBasedVariable = true;
 		public bool lockedVariableName = false;
-		public FloatPrecision precision = FloatPrecision.Float;
+		public FloatPrecision precision = FloatPrecision.Half;
 
 		string[] _precisionLabels;
 		public string[] precisionLabels{
@@ -1580,8 +1580,8 @@ namespace ShaderForge {
 
 
 			// See how tall/which ones we should use on this node
-			bool showPrecision = ((ShouldDefineVariable() || IsProperty()) && isFloatPrecisionBasedVariable) || canAlwaysSetPrecision;
-			bool showVarname = !IsGlobalProperty() && (ShouldDefineVariable() || IsProperty()) && !lockedVariableName ;
+			bool showPrecision = ((ShouldDefineVariable() || IsProperty()) && isFloatPrecisionBasedVariable) || true;//canAlwaysSetPrecision
+            bool showVarname = !IsGlobalProperty() && (ShouldDefineVariable() || IsProperty()) && !lockedVariableName ;
 			bool optionalVarname = IsProperty();
 			bool showPanel = SF_Settings.showVariableSettings && (showPrecision || showVarname);
 

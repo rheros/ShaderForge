@@ -562,19 +562,19 @@ namespace ShaderForge {
 
 			switch( currentPass ) {
 				case PassType.FwdBase:
-					App( "#define UNITY_PASS_FORWARDBASE" );
+					App( "//#define UNITY_PASS_FORWARDBASE" );
 					break;
 				case PassType.FwdAdd:
-					App( "#define UNITY_PASS_FORWARDADD" );
+					App( "//#define UNITY_PASS_FORWARDADD" );
 					break;
 				case PassType.Deferred:
-					App( "#define UNITY_PASS_DEFERRED" );
+					App( "//#define UNITY_PASS_DEFERRED" );
 					break;
 				case PassType.ShadCast:
-					App( "#define UNITY_PASS_SHADOWCASTER" );
+					App( "//#define UNITY_PASS_SHADOWCASTER" );
 					break;
 				case PassType.Meta:
-					App( "#define UNITY_PASS_META 1" );
+					App( "//#define UNITY_PASS_META 1" );
 					break;
 			}
 
@@ -662,7 +662,7 @@ namespace ShaderForge {
 
 
 			if( dependencies.DoesIncludePlatforms() )
-				App( "#pragma only_renderers " + dependencies.GetIncludedPlatforms() );
+				App( "//#pragma only_renderers " + dependencies.GetIncludedPlatforms() );
 			if( dependencies.IsTargetingAboveDefault() ) {
 				if( ps.catExperimental.force2point0 )
 					App( "#pragma target 2.0" );
