@@ -292,9 +292,9 @@ namespace ShaderForge {
 			GUI.skin.box.clipping = TextClipping.Overflow;
 			GUI.BeginGroup( rect );
 #if UNITY_2018_1_OR_NEWER
-            if ( IsProperty() && Event.current.type == EventType.DragPerform && rectInner.Contains(Event.current.mousePosition) ) {
+            if( IsProperty() && Event.current.type == EventType.DragPerform && rectInner.Contains(Event.current.mousePosition) ) {
 				Object droppedObj = DragAndDrop.objectReferences[0];
-				if( droppedObj is Texture2D || droppedObj is RenderTexture) {
+				if( droppedObj is Texture2D  || droppedObj is RenderTexture) {
 					Event.current.Use();
 					TextureAsset = droppedObj as Texture;
 					OnAssignedTexture();
@@ -316,7 +316,7 @@ namespace ShaderForge {
 				}
 			}
 #else
-                        if ( IsProperty() && Event.current.type == EventType.DragPerform && rectInner.Contains(Event.current.mousePosition) ) {
+           if( IsProperty() && Event.current.type == EventType.DragPerform && rectInner.Contains(Event.current.mousePosition) ) {
 				Object droppedObj = DragAndDrop.objectReferences[0];
 				if( droppedObj is Texture2D || droppedObj is ProceduralTexture || droppedObj is RenderTexture) {
 					Event.current.Use();
@@ -342,7 +342,7 @@ namespace ShaderForge {
 #endif
 
 
-			Color prev = GUI.color;
+            Color prev = GUI.color;
 			if( TextureAsset ) {
 				GUI.color = Color.white;
 				GUI.DrawTexture( rectInner, texture.texture, ScaleMode.StretchToFill, false ); // TODO: Doesn't seem to work
@@ -455,9 +455,9 @@ namespace ShaderForge {
 				if(importer is TextureImporter)
 					newAssetIsNormalMap = ((TextureImporter)importer ).textureType == TextureImporterType.NormalMap;
 #if UNITY_2018_1_OR_NEWER
-                else if (TextureAsset is Texture2D && TextureAsset.name.EndsWith("_Normal"))
+                else if(TextureAsset is Material && TextureAsset.name.EndsWith("_Normal"))
 #else
-                    else if (TextureAsset is ProceduralTexture && TextureAsset.name.EndsWith("_Normal"))
+                     else if(TextureAsset is ProceduralTexture && TextureAsset.name.EndsWith("_Normal"))
 #endif
                     newAssetIsNormalMap = true; // When it's a ProceduralTexture having _Normal as a suffix
 				else
